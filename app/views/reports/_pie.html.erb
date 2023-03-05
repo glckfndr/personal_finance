@@ -1,0 +1,58 @@
+
+<div style="display: flex; justify-content: space-around; align-items: flex-start; margin: 20px">
+  <!-- Table with data in Pie Chart-->
+  <div min-width="400px">
+       <table class="table table-bordered" >
+      <thead>
+        <tr>
+          <th> Категорія </th>  <th> Сума </th> <th> Сума (%) </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% (0...@xdata.length).each do |i|  %>
+          <tr>
+            <td> <%= @xdata[i] %></td> <td> <%= @ydata[i] %> </td>
+            <td> <%= format("%.1f", @ydata[i]/@ydata.sum * 100) %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+
+    </table>
+  </div>
+  <!-- Canvas for Pie Chart -->
+  <div style='background-color: #dde1e5'  >
+    <canvas id="CategoryChart" width="600" height="400"></canvas>
+  </div>
+</div>
+
+
+
+
+<!-- Create Instance of Pie Chart and Set Parameters -->
+<script type="text/javascript">
+    if (typeof Chart === 'undefined')
+        setTimeout(function(){}, 1000);
+    {
+        const ctx = document.getElementById('CategoryChart');
+        const data = {
+            labels: <%= raw @xdata %>, // set x data
+            datasets: [{
+                label: "Звіт витрат по категоріям" ,
+                data: <%= @ydata %>, // set y data
+                borderWidth: 1,
+                pointBackgroundColor: 'rgb(1,0,0,0.5)'
+            }]
+        };
+
+        const config = {
+            type: 'pie',
+            data: data,
+            options: {
+                responsive: false
+            }
+        };
+        const MyChart = new Chart(ctx, config);
+
+    }
+
+</script>

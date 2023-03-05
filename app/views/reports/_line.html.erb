@@ -1,0 +1,36 @@
+<div>
+  <canvas id="TimeChart" width="1024" height="400" ></canvas>
+</div>
+
+
+<script>
+    {
+    const ctx = document.getElementById('TimeChart');
+    const line_label = <%= "Тип: #{@operation_type}, категорія: #{@category_name}".inspect.html_safe %>;
+    const x_data = <%= raw @xdata %>;
+    const y_data =  <%= @ydata %>;
+
+    const data = {
+        labels: x_data,
+        datasets: [{
+            label: line_label,
+            data: y_data,
+            fill: false,
+            borderColor: 'rgb(200, 200, 0)', // line color
+            borderWidth: 3 // width of line
+        }]
+    };
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            aspectRatio: 1,
+            responsive: false
+        },
+    };
+        ctx.style.backgroundColor = 'rgb(220,224,228)';
+        ctx.lineWidth = 40;
+        const MyChart = new Chart(ctx, config);
+    }
+
+</script>
