@@ -1,0 +1,9 @@
+<%= render partial: "shared/form_header", locals: {res_path: reports_index_path, header_name:
+                        "Звіт по категоріям #{@operation_type} з #{@start_date} до #{@end_date}"} %>
+
+
+<div id="category_pie">
+
+  <%= render partial: "pie"%>
+</div>
+

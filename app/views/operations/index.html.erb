@@ -1,0 +1,96 @@
+<% if notice  %>
+  <div class="alert alert-success" role="alert">
+    <h4><%= notice %></h4>
+  </div>
+<% end %>
+
+<%= render partial: 'shared/body_header', locals: {header_name: "Транзакції"} %>
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Пошук (залежить від регістру)</a>
+    <%= form_with url: operations_path, class: "d-flex", method: :get do |f|%>
+      <%= f.search_field :search, class: 'form-control md-6', placeholder: "Шукаємо опис ..." %>
+      <%= f.submit "Знайти", class: "btn btn-outline-light" %>
+    <% end %>
+  </div>
+</nav>
+
+<!-- Category_names selector for operations_table table -->
+<label for="cat_names" class="form-label">Вибрати категорію:</label>
+<select id="category_names" name="cat_names" class="form-select">
+  <% @data =  @operations.inject([["All"]]) {|lst,x| lst.append [x.category.name]}.uniq %>
+  <% @data.each do |x| %>
+    <option value=<%= x[0] %>> <%= x[0] %> </option>
+  <% end %>
+</select>
+
+
+
+<!-- Create operations_table table-->
+<div id="operations">
+  <%# if !params[:search] || params[:search] == "" then
+          operations = @operations
+       else
+         operations = @operations.where("description LIKE ?", "%" + params[:search] + "%")
+     end %>
+  <%= render partial: "operations_table", locals: {operations: @operations} %>
+</div>
+
+<script>
+    {
+        // console.log(document.cookie);
+        // document.getElementById("category_names").options[parseInt(document.cookie)].selected = true;
+        for (let el of  document.getElementById("category_names").options) {
+            if (el.text == document.cookie) {
+                el.selected = true;
+
+                let table = document.getElementById("operation_table");
+                for (let i = 0; i < table.rows.length; i++) {
+
+                    if (document.cookie == "All") {
+                        table.rows[i].hidden = false;
+                    } else if (table.rows[i].cells[1].innerHTML.trim() != document.cookie) {
+                        table.rows[i].hidden = true;
+                    } else {
+                        table.rows[i].hidden = false; // hide row
+                    }
+                }
+                table.rows[0].hidden = false;
+            }
+        }}
+</script>
+
+<div style="margin-bottom: 15px">
+<%= button_to "Додати нову транзакцію",  new_operation_path, method: :get, class: "btn btn-warning"  %>
+</div>
+
+<%= paginate @operations %>
+<!-- Function on the onchange event for the category_names selector  -->
+<script>
+
+       document.getElementById("category_names").onchange = function (){
+           document.cookie = this.value.trim();
+           let table = document.getElementById("operation_table");
+          for (let i = 0; i < table.rows.length; i++){
+
+            if(this.value == "All"){
+                 table.rows[i].hidden = false;
+             }
+            else if(table.rows[i].cells[1].innerHTML.trim() != this.value){
+                 table.rows[i].hidden = true;
+            }
+            else{
+                table.rows[i].hidden = false; // hide row
+            }
+              table.rows[0].hidden = false;
+         }
+     }
+
+</script>
+
+
+
+</script>
+
+

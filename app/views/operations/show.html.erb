@@ -1,0 +1,28 @@
+<% if notice %>
+  <div class="alert alert-success">
+    <h4><%= notice %></h4>
+  </div>
+<% end %>
+
+<%= render @operation %>
+
+<div style="margin-top: 10px">
+  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+    <div class="btn-group mr-2" role="group" aria-label="First group" style="margin: 0 5px">
+      <%= button_to icon('fa-regular', 'pen-to-square'), edit_operation_path(@operation),  method: :get,
+                    class: "btn btn-info" %>
+    </div>
+    <div class="btn-group mr-2" role="group" aria-label="First group" style="margin: 0 5px">
+      <%= button_to icon('fa-regular', 'trash-can'), @operation,
+                    :method =>  'delete', data: {turbo_confirm: 'Ви впевнені?'}, class: "btn btn-danger"%>
+    </div>
+
+    <%= button_to raw('<i class="fa-solid fa-house"></i>'),
+                  operations_path, method: :get,
+                  class: "btn btn-success btn-md", style: "margin-right: 10px" %>
+
+
+
+  </div>
+</div>

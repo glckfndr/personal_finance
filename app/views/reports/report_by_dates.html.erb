@@ -1,0 +1,8 @@
+<%= render partial: "shared/form_header", locals: {res_path: reports_index_path, header_name:
+  raw("Розподіл #{@operation_type} по категорії #{@category_name} за період з #{@start_date} по #{@end_date}")} %>
+
+<div id="category_pie">
+  <%= render partial: "line"%>
+</div>
+
+

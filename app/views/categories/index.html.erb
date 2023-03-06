@@ -1,0 +1,13 @@
+<!-- Повідомлення про успіх (або помилку) -->
+<%if notice %>
+  <div class="alert alert-success">
+    <h4><%= notice %></h4>
+  </div>
+<% end %>
+
+<%= render partial: 'shared/body_header', locals: {header_name: "Категорії витрат/доходів"} %>
+
+<div id="categories">
+  <%= render partial: "categories_table", locals: {categories: @categories} %>
+</div>
+<%= button_to "Додати нову категорію",  new_category_path, method: :get, class: "btn btn-warning"  %>

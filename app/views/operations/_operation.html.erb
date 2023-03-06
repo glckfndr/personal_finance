@@ -1,0 +1,10 @@
+<div id="<%= dom_id operation %>">
+  <% operation.class_eval("attr_accessor :category_name")
+     operation.category_name = operation.category.name %>
+  <%= render partial: 'shared/entity_table',
+             locals: {entity: operation,
+                      property_names: %w[Сума Дата Опис Тип Категорія],
+                      properties: [:amount, :odate, :description, :operation_type, :category_name],
+                      headers: %w[Властивість Значення]} %>
+</div>
+

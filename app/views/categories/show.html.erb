@@ -1,0 +1,41 @@
+<% if notice %>
+<div class="alert alert-success">
+<h4><%= notice %></h4>
+</div>
+<% end %>
+
+<% if @category.errors.any? %>
+  <div class="alert alert-warning" role="alert">
+    <h4><%= pluralize(@category.errors.count, "error") %> prohibited this category from being deleted:</h4>
+
+    <ul>
+      <% category.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<%= render @category %>
+
+<div>
+
+  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group mr-2" role="group" aria-label="First group" style="margin: 0 5px">
+      <%= button_to icon('fa-regular', 'pen-to-square'), edit_category_path(@category),  method: :get,
+                    class: "btn btn-info" %>
+    </div>
+    <div class="btn-group mr-2" role="group" aria-label="First group" style="margin: 0 5px">
+      <%= button_to icon('fa-regular', 'trash-can'), @category,
+                    :method =>  'delete', data: {turbo_confirm: 'Ви впевнені?'}, class: "btn btn-danger"%>
+
+    </div>
+
+    <%= button_to raw('<i class="fa-solid fa-house"></i>'),
+                  categories_path, method: :get,
+                  class: "btn btn-success btn-md", style: "margin-right: 10px" %>
+
+  </div>
+
+</div>

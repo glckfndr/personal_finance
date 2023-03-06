@@ -1,0 +1,97 @@
+
+  <%= form_with(model: operation, html: {class: "form-col"}) do |form| %>
+
+    <% if operation.errors.any? %>
+      <div class="alert alert-warning" role="alert">
+        <h2><%= pluralize(operation.errors.count, "error") %> prohibited this operation from being saved:</h2>
+        <ul>
+          <% operation.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <div class="col-md-2">
+      <div class="form-outline">
+        <%= form.label :amount, "Сума: ", class: "col-form-label-lg" %>
+        <%= form.number_field :amount, value: operation.amount || 0.5, step: 0.5, min: 1.0, default: 10,
+                              class: "form-control-lg is-invalid", :required => true %>
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <div class="form-outline">
+      <%= form.label "Категорія: ", class: "col-form-label-lg" %>
+    <!--  <#%=  select(:operation, :category_id, @categories)  %> -->
+      <%= form.collection_select :category_id, Category.order(:name), :id, :name, {},
+                                 {class: 'form-select form-select-lg'} %>
+
+    </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <div class="form-outline">
+      <%= form.label "Опис: " , class: "col-form-label-lg" %>
+     <!-- <#%= form.text_field :description %> -->
+      <%= form.select :description, @categories_selected, {},
+                      {class: 'form-select form-select-lg'} %>
+    </div>
+    </div>
+
+
+
+    <div class="col-md-4">
+      <div class="form-outline">
+      <%= form.label "Тип: ", class: "col-form-label-lg" %>
+      <%= select(:operation, :operation_type, %w[витрати доходи], {}, class: 'form-select form-select-lg') %>
+    </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-outline">
+      <%= form.label "Коли: ", class: "col-form-label-sm" %>
+      <%= form.date_field :odate, class: "col-form-label",  style: "display: block" %>
+    </div>
+    </div>
+
+
+      <div style="margin-top: 10px">
+      <%= form.submit defined?(submit_name)?  submit_name: "Submit", class: "btn btn-danger btn-block mb-4 btn-lg"  %>
+    </div>
+  <% end %>
+
+
+
+<script>
+    {
+        let descr_selector = document.getElementById("operation_description");
+        for (let i = 0; i < descr_selector.options.length; i++) {
+            if (descr_selector.options[0].parentElement != descr_selector.options[i].parentElement) {
+                descr_selector.options[i].hidden = true; // hide row
+                descr_selector.options[i].parentElement.hidden = true;
+            }
+        }
+        descr_selector[0].selected = true;
+
+        document.getElementById("operation_category_id").onchange = function () {
+            let categoryName = this.options[this.selectedIndex].text;
+            let descr_selector = document.getElementById("operation_description");
+            let first = -1;
+            for (let i = 0; i < descr_selector.options.length; i++) {
+                if (categoryName == descr_selector.options[i].parentElement['label']) {
+                    if (first == -1) first = i;
+                    descr_selector.options[i].hidden = false;
+                    descr_selector.options[i].parentElement.hidden = false
+                } else {
+                    descr_selector.options[i].hidden = true; // hide row
+                    descr_selector.options[i].parentElement.hidden = true;
+                }
+            }
+            descr_selector[first].selected = true;
+        }
+    }
+</script>
