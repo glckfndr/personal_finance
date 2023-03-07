@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 
 gem "font-awesome-sass", "~> 6.3.0"
-gem "simple_form"
+
 gem "kaminari"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"

@@ -29,7 +29,6 @@ class Operation < ApplicationRecord
                .sum('amount')
     end
   end
-
   def self.search_by_name_id(name, id)
     Operation.where("description LIKE ? OR operation_type LIKE ? OR category_id = ?", name, name, id)
   end

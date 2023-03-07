@@ -1,13 +1,49 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  amount: 9.99
-  odate: 2023-01-11 21:09:53
-  description: MyString
-  category: one
+shoes:
+  amount: 100.0
+  odate: 2023-01-02 21:09:53
+  description: shoes
+  category: sport
 
-two:
-  amount: 9.99
-  odate: 2023-01-11 21:09:53
-  description: MyString
-  category: two
+coat:
+  amount: 1000.0
+  odate: 2023-01-12 21:09:53
+  description: coat
+  category: sport
+
+pant:
+  amount: 220.0
+  odate: 2023-02-03 21:09:53
+  description: pant
+  category: sport
+
+brown1:
+  amount: 25.0
+  odate: 2023-01-02 21:09:53
+  description: brown
+  category: bread
+
+white1:
+  amount: 45.0
+  odate: 2023-01-14 21:09:53
+  description: white
+  category: bread
+
+brown2:
+  amount: 35.0
+  odate: 2023-02-03 21:09:53
+  description: brown
+  category: bread
+
+white2:
+  amount: 55.0
+  odate: 2023-02-24 21:09:53
+  description: white
+  category: bread
+
+brown3:
+  amount: 45.0
+  odate: 2023-02-03 00:09:53
+  description: brown
+  category: bread
