@@ -15,12 +15,12 @@ class Operation < ApplicationRecord
   end
 
   def self.get_sum_on_dates(start_date, end_date, op_type, category_name)
-    if(category_name != "All")
-    Operation.select('id, name, amount , date(odate)').joins(:category)
+      if(category_name != "All")
+      dat = Operation.select('id, name, amount , date(odate)').joins(:category)
              .where('date(odate) BETWEEN ? AND ?  AND operation_type = ? ', start_date, end_date, op_type)
              .where('name = ?', category_name)
-             .group('date(odate)')
-             .sum('amount')
+              .group('date(odate)')
+              .sum('amount')
     else
 
       Operation.select('id, name, amount , date(odate)').joins(:category)

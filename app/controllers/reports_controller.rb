@@ -42,7 +42,8 @@ class ReportsController < ApplicationController
     @category_name = params[:category_name]
     @data = Operation.get_sum_on_dates @start_date, @end_date,  @operation_type, @category_name
     @xdata, @ydata = get_plot_data @data
-
+    @xdata.map! {|x| x.to_date.strftime('%Y-%m-%d')}
+    debugger
     #.map{|x| x.attributes}
     #puts @data
     #debugger
