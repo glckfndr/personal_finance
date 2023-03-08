@@ -18,8 +18,6 @@ class ReportsController < ApplicationController
       redirect_to action: 'report_by_dates', start_date: start_date,  end_date: end_date,
                   operation_type: operation_type, category_name: "All"
     end
-
-    #end
   end
 
   def report_by_category
@@ -31,7 +29,6 @@ class ReportsController < ApplicationController
     #@end_date = '2023-03-01'
     @data = Operation.get_sum_for_all_category @start_date, @end_date, @operation_type
     @xdata, @ydata = get_plot_data @data
-    #debugger
   end
 
   def report_by_dates
@@ -43,10 +40,7 @@ class ReportsController < ApplicationController
     @data = Operation.get_sum_on_dates @start_date, @end_date,  @operation_type, @category_name
     @xdata, @ydata = get_plot_data @data
     @xdata.map! {|x| x.to_date.strftime('%Y-%m-%d')}
-    debugger
     #.map{|x| x.attributes}
-    #puts @data
-    #debugger
   end
 
   private
