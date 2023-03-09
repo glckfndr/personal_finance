@@ -1,16 +1,5 @@
   <%= form_with(model: operation, html: {class: "form-col"}) do |form| %>
-
-    <% if operation.errors.any? %>
-      <div class="alert alert-warning" role="alert">
-        <h2><%= pluralize(operation.errors.count, "error") %> prohibited this operation from being saved:</h2>
-        <ul>
-          <% operation.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
+    <%=  render partial: 'shared/error', locals: {entity: operation} %>
 
     <div class="col-md-2">
       <div class="form-outline">

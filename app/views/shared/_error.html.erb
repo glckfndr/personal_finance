@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<% if entity.errors.any? %>
+  <div class="alert alert-warning" role="alert">
+    <h2><%= pluralize(entity.errors.count, "error") %> prohibited this operation from being saved:</h2>
+    <ul>
+      <% entity.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+

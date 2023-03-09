@@ -1,15 +1,5 @@
 <%= form_with(model: category, html: {class: "row g-4 "}) do |form| %>
-  <% if category.errors.any? %>
-    <div class="alert alert-warning" role="alert">
-      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
-
-      <ul>
-        <% category.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%=  render partial: 'shared/error', locals: {entity: category} %>
 
     <div class="col-md-4">
       <div class="form-outline">
