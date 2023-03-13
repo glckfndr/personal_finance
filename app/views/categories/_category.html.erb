@@ -1,6 +1,5 @@
 <div id="<%= dom_id category %>">
-
-<%= render partial: 'shared/entity_table',
-           locals: {entity: category, property_names: %w[Назва Опис], properties: [:name, :description],
-                     headers: %w[Властивість Значення]} %>
+  <%= render partial: 'shared/entity_table',
+             locals: { entity: category, property_names: %w[Назва Опис], properties: [:name, :description],
+                       headers: %w[Властивість Значення] } %>
 </div>

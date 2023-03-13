@@ -1,33 +1,30 @@
 <div class='table-responsive-sm'>
-<table id='operation_table',
-       class='table table-success table-striped-columns table-hover table-bordered'>
-  <thead>
-  <%= create_table_header %w[# Категорія Опис Тип Сума Дата Управління] %>
-  </thead>
-  <tbody>
-  <% operations.each do |operation| %>
-    <tr>
-      <% operation.class_eval("attr_accessor :category_name")
-         operation.category_name = operation.category.name %>
-
-      <%= create_data_row(operation, [:id, :category_name, :description, :operation_type, :amount]) %>
-
-      <td> <%= operation.odate.strftime("%d-%m-%Y") %></td>
-      <td>
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-          <div class="btn-group mr-2" role="group" aria-label="First group" style="margin: 0 5px">
-            <%= button_to icon('fa-regular', 'pen-to-square', class: 'fa-shake'), edit_operation_path(operation),
-                          method: :get, class: "btn btn-info" %>
+  <table id='operation_table' ,
+         class='table table-success table-striped-columns table-hover table-bordered'>
+    <thead>
+    <%= create_table_header %w[# Категорія Опис Тип Сума Дата Управління] %>
+    </thead>
+    <tbody>
+    <% operations.each do |operation| %>
+      <tr>
+        <% operation.class_eval("attr_accessor :category_name")
+           operation.category_name = operation.category.name %>
+        <%= create_data_row(operation, [:id, :category_name, :description, :operation_type, :amount]) %>
+        <td> <%= operation.odate.strftime("%d-%m-%Y") %></td>
+        <td>
+          <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group" style="margin: 0 5px">
+              <%= button_to icon('fa-regular', 'pen-to-square', class: 'fa-shake'), edit_operation_path(operation),
+                            method: :get, class: "btn btn-info" %>
+            </div>
+            <div class="btn-group mr-2" role="group" aria-label="First group" style="margin: 0 5px">
+              <%= button_to icon('fa-solid', 'trash-can'), operation, :method => 'delete',
+                            data: { turbo_confirm: 'Ви впевнені?' }, class: "btn btn-danger" %>
+            </div>
           </div>
-          <div class="btn-group mr-2" role="group" aria-label="First group" style="margin: 0 5px">
-            <%= button_to icon('fa-solid', 'trash-can'), operation, :method => 'delete',
-                          data: { turbo_confirm: 'Ви впевнені?' }, class: "btn btn-danger" %>
-          </div>
-        </div>
-
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-  </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

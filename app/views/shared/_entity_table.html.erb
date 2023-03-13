@@ -1,17 +1,17 @@
-<table id='entity_table', class='table table-success table-striped-columns table-hover table-bordered'>
+<table id='entity_table' , class='table table-success table-striped-columns table-hover table-bordered'>
   <thead>
-    <tr>
-      <% headers.each do |header| %>
-        <th><%= header %></th>
-      <% end %>
-    </tr>
+  <tr>
+    <% headers.each do |header| %>
+      <th><%= header %></th>
+    <% end %>
+  </tr>
   </thead>
   <tbody>
-    <% properties.each_with_index do |property, i| %>
-      <tr>
-        <td> <%= property_names[i] %></td>
-        <td> <%= entity.send(property) %></td>
-      </tr>
-    <% end %>
- </tbody>
+  <% properties.each_with_index do |property, i| %>
+    <tr>
+      <td> <%= property_names[i] %></td>
+      <td> <%= entity.send(property) %></td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>

@@ -1,28 +1,27 @@
 <div class='table-responsive-sm'>
-  <table id='operation_table',
+  <table id='operation_table' ,
          class='table table-success table-striped-columns table-hover table-bordered'>
 
-<thead>
-<%= create_table_header %w[Назва Опис Управління] %>
-</thead>
+    <thead>
+    <%= create_table_header %w[Назва Опис Управління] %>
+    </thead>
     <tbody>
     <% categories.each do |category| %>
-    <tr>
-      <%= create_data_row(category, [:name, :description]) %>
-      <td>
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-          <div class="btn-group mr-2" role="group" aria-label="First group" style="margin: 0 5px">
-            <%= button_to icon('fa-regular', 'pen-to-square'), edit_category_path(category),  method: :get,
-                          class: "btn btn-info" %>
+      <tr>
+        <%= create_data_row(category, [:name, :description]) %>
+        <td>
+          <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group" style="margin: 0 5px">
+              <%= button_to icon('fa-regular', 'pen-to-square'), edit_category_path(category), method: :get,
+                            class: "btn btn-info" %>
+            </div>
+            <div class="btn-group mr-2" role="group" aria-label="First group" style="margin: 0 5px">
+              <%= button_to icon('fa-regular', 'trash-can'), category,
+                            :method => 'delete', data: { turbo_confirm: 'Ви впевнені?' }, class: "btn btn-danger" %>
+            </div>
           </div>
-          <div class="btn-group mr-2" role="group" aria-label="First group" style="margin: 0 5px">
-            <%= button_to icon('fa-regular', 'trash-can'), category,
-                          :method =>  'delete', data: {turbo_confirm: 'Ви впевнені?'}, class: "btn btn-danger"%>
-
-          </div>
-        </div>
-      </td>
-    </tr>
+        </td>
+      </tr>
     <% end %>
     </tbody>
 

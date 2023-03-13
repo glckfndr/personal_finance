@@ -1,27 +1,26 @@
-<%= form_with(model: category, html: {class: "row g-4 "}) do |form| %>
-  <%=  render partial: 'shared/error', locals: {entity: category} %>
+<%= form_with(model: category, html: { class: "row g-4 " }) do |form| %>
+  <%= render partial: 'shared/error', locals: { entity: category } %>
 
-    <div class="col-md-4">
-      <div class="form-outline">
+  <div class="col-md-4">
+    <div class="form-outline">
 
-        <%= form.label  :name, 'Назва категорії',class: "col-form-label-lg" %>
-        <%= form.text_field :name, class: "form-control is-invalid", :required => true  %>
-        <div class="invalid-feedback" style="color: yellow">Треба вказати групу товарів</div>
+      <%= form.label :name, 'Назва категорії', class: "col-form-label-lg" %>
+      <%= form.text_field :name, class: "form-control is-invalid", :required => true %>
+      <div class="invalid-feedback" style="color: yellow">Треба вказати групу товарів</div>
     </div>
-    </div>
+  </div>
 
-    <div class="col-md-8">
-      <div class="form-outline">
-      <%= form.label :description, 'Опис (товари вводяться через кому)',class: "col-form-label-lg" %>
-      <%= form.text_field :description, class: "form-control is-invalid",  :required => true %>
-        <div class="invalid-feedback" style="color: yellow">Треба заповнити товарами для покупок (може бути один)</div>
+  <div class="col-md-8">
+    <div class="form-outline">
+      <%= form.label :description, 'Опис (товари вводяться через кому)', class: "col-form-label-lg" %>
+      <%= form.text_field :description, class: "form-control is-invalid", :required => true %>
+      <div class="invalid-feedback" style="color: yellow">Треба заповнити товарами для покупок (може бути один)</div>
     </div>
-    </div>
+  </div>
 
-    <div>
-    <%= form.submit defined?(submit_name)?  submit_name: "Submit", class: "btn btn-primary btn-lg"%>
-
-    </div>
+  <div>
+    <%= form.submit defined?(submit_name) ? submit_name : "Submit", class: "btn btn-primary btn-lg" %>
+  </div>
 
 <% end %>
 

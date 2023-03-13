@@ -1,13 +1,13 @@
-<%= render partial: 'shared/body_header', locals: {header_name: "Генератор звітів"} %>
+<%= render partial: 'shared/body_header', locals: { header_name: "Генератор звітів" } %>
 
 <%= form_with url: "/create_report", method: :get do |form| %>
   <div class="">
-    <%= form.label :start_date, "Початкова дата:", class: "col-form-label" ,  style: "display: block" %>
+    <%= form.label :start_date, "Початкова дата:", class: "col-form-label", style: "display: block" %>
     <%= form.date_select :start_date, class: 'form-select form-select', default: -1.month.from_now %>
   </div>
   <div>
-    <%= form.label :end_date, "Кінцева дата:", style: "display: block"%>
-    <%= form.date_select :end_date, class: 'form-select form-select',  default: -1.day.from_now %>
+    <%= form.label :end_date, "Кінцева дата:", style: "display: block" %>
+    <%= form.date_select :end_date, class: 'form-select form-select', default: -1.day.from_now %>
   </div>
   <div>
     <%= form.label :end_date, "Тип операції:" %>
@@ -15,19 +15,19 @@
   </div>
   <div>
     <%= form.label :end_date, "Категорія:" %>
-    <select name="category_id", class='form-select form-select'>
+    <select name="category_id" , class='form-select form-select'>
       <%= @categories.each do |category| %>
         <option value="<%= category.name %>"><%= category.name %></option>
       <% end %>
     </select>
   </div>
 
-<div style="margin-top: 15px">
-  <button type="submit" class="btn btn-primary" id="btn_submit" name="btn" value="summary">Сума</button>
-  <button type="reset" class="btn btn-primary" id="btn_reset" name="btn_reset" value="reset">Очистити</button>
-  <button type="submit" class="btn btn-success" id="btn" name="btn" value="pie" >По категоріям</button>
-  <button type="submit" class="btn btn-danger" id="btn" name="btn" value="line" >По датам</button>
-</div>
+  <div style="margin-top: 15px">
+    <button type="submit" class="btn btn-primary" id="btn_submit" name="btn" value="summary">Сума</button>
+    <button type="reset" class="btn btn-primary" id="btn_reset" name="btn_reset" value="reset">Очистити</button>
+    <button type="submit" class="btn btn-success" id="btn" name="btn" value="pie">По категоріям</button>
+    <button type="submit" class="btn btn-danger" id="btn" name="btn" value="line">По датам</button>
+  </div>
 <% end %>
 
 

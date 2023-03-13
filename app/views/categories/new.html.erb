@@ -1,7 +1,4 @@
-
-
-<%= render partial: "shared/form_header", locals: {res_path: raw(categories_path), header_name: 'Нова категорія'} %>
-
+<%= render partial: "shared/form_header", locals: { res_path: raw(categories_path), header_name: 'Нова категорія' } %>
 <%= render "form", category: @category, submit_name: "Створити" %>
 <br>
 
