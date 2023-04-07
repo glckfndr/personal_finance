@@ -1,3 +1,7 @@
+<% provide :page do %>
+<%= full_title("Reports") %>
+<%end%>
+
 <%= render partial: 'shared/body_header', locals: { header_name: "Генератор звітів" } %>
 
 <%= form_with url: "/create_report", method: :get do |form| %>
